@@ -7,13 +7,16 @@
     ```
     yarn 
     ```
-2. Do one of the following to configure the token, orgId, and catalogId
 
-   Export three variables that will contain the necessary values
+## Update config values
 
-    * export WEEDMAPS_ACCESS_TOKEN=[some token]
-    * export WEEDMAPS_ORG_ID=[some org id]
-    * export WEEDMAPS_CATALOG_ID=[some catalogId]
+Do one of the following to configure the token, orgId, and catalogId
+
+  Export three variables that will contain the necessary values
+
+  * export WEEDMAPS_ACCESS_TOKEN=[some token]
+  * export WEEDMAPS_ORG_ID=[some org id]
+  * export WEEDMAPS_CATALOG_ID=[some catalogId]
 
 ### Or 
 
