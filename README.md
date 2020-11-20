@@ -1,6 +1,6 @@
 # Weedmaps Bugs
 
-##Setup
+## Setup
 
 1. Install prerequisites
 
@@ -16,7 +16,7 @@
 
   2. OR - modify the variable values in './config.js' and replace the "replace_with*" values with legitimate values
 
-##Running the tests
+## Running the tests
 
 ```
 yarn test
