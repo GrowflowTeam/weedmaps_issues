@@ -28,4 +28,5 @@ Do one of the following to configure the token, orgId, and catalogId
 yarn test
 ```
 
+Update the variable 'totalNumberOfProductsExpected' in './config.js' if you are providing a token, orgId, and catalogId that will result in a result set larger than 27 (the current default in './config.js')
 

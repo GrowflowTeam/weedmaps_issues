@@ -1,12 +1,13 @@
 import axios from "axios";
-import { weedmapsAccessToken, orgID, catalogID } from "../config";
-
-const defaultPageSize = 10;
-const totalNumberOfProductsExpected = 27;
-const testIterations = 3;
-const totalNumberOfPages = Math.ceil(
-  totalNumberOfProductsExpected / defaultPageSize
-);
+import {
+  weedmapsAccessToken,
+  orgID,
+  catalogID,
+  defaultPageSize,
+  totalNumberOfProductsExpected,
+  testIterations,
+  totalNumberOfPages,
+} from "../config";
 
 const createGetOptions = ({
   pageNumber = 1,
