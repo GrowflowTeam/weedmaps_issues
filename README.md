@@ -2,11 +2,11 @@
 
 ## Setup
 
-1. Install prerequisites
+Install prerequisites
 
-    ```
-    yarn 
-    ```
+```
+yarn 
+```
 
 ## Update config values
 
