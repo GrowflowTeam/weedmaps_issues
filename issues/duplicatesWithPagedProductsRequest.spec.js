@@ -27,13 +27,14 @@ const createGetOptions = ({
   headers: {
     authorization: `Bearer ${weedmapsAccessToken}`,
     accept: "application/vnd.api+json",
+    "user-agent": "growflow",
   },
 });
-
 const fetchProducts = ({ pageNumber = 1, pageSize = defaultPageSize } = {}) =>
   axios(createGetOptions({ pageNumber, pageSize }));
 
 const createPageRequests = () =>
+  // totalNumberOfPages should be coming from the response; not hard coded value
   new Array(totalNumberOfPages)
     .fill(null)
     .map((_, index) => fetchProducts({ pageNumber: index + 1 }));
@@ -41,29 +42,17 @@ const createPageRequests = () =>
 describe("duplicates with paged products request", () => {
   new Array(testIterations).fill(null).forEach((_, index) => {
     describe(`Iteration: ${index + 1}`, () => {
-      let uniqueIds;
-      let results;
-      let rawData;
+      it("number of unique product ids should match the number of products available", async () => {
+        const response = await Promise.all(createPageRequests());
 
-      beforeEach(async () => {
-        rawData = await Promise.all(createPageRequests());
-      });
-
-      beforeEach(() => {
-        results = rawData.reduce(
+        const results = response.reduce(
           (acc, { data: { data } }) => acc.concat(data),
           []
         );
 
-        uniqueIds = results.reduce((acc, { id }) => ({ ...acc, [id]: id }), {});
-      });
+        const uniqueIds = Object.keys(results.reduce((acc, { id }) => ({ ...acc, [id]: id }), {}));
 
-      it("the correct number of products are returned", () => {
-        expect(results.length).toEqual(totalNumberOfProductsExpected);
-      });
-
-      it("number of unique product ids should match the number of products retrieved", () => {
-        expect(Object.keys(uniqueIds).length).toEqual(results.length);
+        expect(uniqueIds.length).toEqual(totalNumberOfProductsExpected);
       });
     });
   });
